@@ -1,0 +1,8 @@
+[workspace]
+members=[
+  "packages/token-metadata-payable/program",
+  "packages/token-metadata-payable/cli"
+]
+
+[profile.release]
+overflow-checks = true     # Enable integer overflow checks.
