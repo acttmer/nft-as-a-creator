@@ -10,6 +10,7 @@ import {
 } from '@solana/wallet-adapter-wallets'
 import { clusterApiUrl } from '@solana/web3.js'
 import Landing from 'pages/Landing'
+import Mint from 'pages/Mint'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -24,7 +25,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <RouterProvider
-            router={createBrowserRouter([{ path: '/', element: <Landing /> }])}
+            router={createBrowserRouter([
+              { path: '/', element: <Landing /> },
+              { path: '/mint', element: <Mint /> },
+            ])}
           />
         </WalletModalProvider>
       </WalletProvider>
