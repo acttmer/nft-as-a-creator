@@ -72,8 +72,8 @@ const Mint = () => {
       currentUserPubkey,
     )
 
-    const tokenMetadataPubkey = await getMetadataPDA(mint.publicKey)
-    const masterEditionPubkey = await getMasterEditionPDA(mint.publicKey)
+    const tokenMetadataPubkey = getMetadataPDA(mint.publicKey)
+    const masterEditionPubkey = getMasterEditionPDA(mint.publicKey)
 
     const transaction = new Transaction().add(
       SystemProgram.createAccount({
@@ -167,9 +167,9 @@ const Mint = () => {
       signature,
     })
 
-    console.log(mint.publicKey.toBase58())
-    console.log(ata.toBase58())
-    console.log(tokenMetadataPubkey.toBase58())
+    console.log('mint', mint.publicKey.toBase58())
+    console.log('ata', ata.toBase58())
+    console.log('metadata', tokenMetadataPubkey.toBase58())
 
     const tokenMetadata = await Metadata.fromAccountAddress(
       connection,

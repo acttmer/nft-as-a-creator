@@ -25,7 +25,7 @@ pub fn process_split_royalty(program_id: &Pubkey, accounts: &[AccountInfo]) -> P
     let metadata = Metadata::from_account_info(metadata_account_info)?;
 
     assert_owned_by(metadata_account_info, program_id)?;
-    assert_owned_by(token_account_info, &spl_token::id())?;
+    // assert_owned_by(token_account_info, &spl_token::id())?;
 
     if !owner_info.is_signer {
         return Err(ProgramError::MissingRequiredSignature);
@@ -39,12 +39,14 @@ pub fn process_split_royalty(program_id: &Pubkey, accounts: &[AccountInfo]) -> P
         return Err(MetadataError::MintMismatch.into());
     }
 
+    let total_amount = token_account.amount;
+
     for creator in metadata.data.creators.unwrap() {
         let result = invoke(
             &transfer(
                 token_account_info.key,
                 &creator.address,
-                token_account.amount * (creator.share / 100) as u64,
+                total_amount * (creator.share as u64) / 100 as u64,
             ),
             &[token_account_info.clone(), owner_info.clone()],
         );

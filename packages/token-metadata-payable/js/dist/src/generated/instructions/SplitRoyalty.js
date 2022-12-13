@@ -40,7 +40,7 @@ function createSplitRoyaltyInstruction(accounts, programId = new web3.PublicKey(
         },
         {
             pubkey: accounts.owner,
-            isWritable: false,
+            isWritable: true,
             isSigner: true,
         },
         {

@@ -230,7 +230,7 @@ pub fn split_royalty(
         program_id,
         accounts: vec![
             AccountMeta::new_readonly(metadata, false),
-            AccountMeta::new_readonly(owner, true),
+            AccountMeta::new(owner, true),
             AccountMeta::new(token, false),
         ],
         data: MetadataInstruction::SplitRoyalty.try_to_vec().unwrap(),

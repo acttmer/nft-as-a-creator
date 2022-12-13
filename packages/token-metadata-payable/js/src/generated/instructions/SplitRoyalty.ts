@@ -20,7 +20,7 @@ export const SplitRoyaltyStruct = new beet.BeetArgsStruct<{
  * Accounts required by the _SplitRoyalty_ instruction
  *
  * @property [] metadata Metadata key (pda of ['metadata', program id, mint id])
- * @property [**signer**] owner Owner on the token account
+ * @property [_writable_, **signer**] owner Owner on the token account
  * @property [_writable_] token Account containing tokens from the metadata's mint
  * @category Instructions
  * @category SplitRoyalty
@@ -57,7 +57,7 @@ export function createSplitRoyaltyInstruction(
     },
     {
       pubkey: accounts.owner,
-      isWritable: false,
+      isWritable: true,
       isSigner: true,
     },
     {

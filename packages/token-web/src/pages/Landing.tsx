@@ -9,23 +9,22 @@ const Landing = () => {
   const { connection } = useConnection()
 
   const hanldeTestSplitRoyalty = async () => {
-    const tokenAccountPubkey = prompt('Token Account address')
-    const mintPubkey = prompt('Mint Public Key')
+    const tokenAddress = prompt('Token address')
+    const tokenAccountAddress = prompt('Token Account address')
 
     if (
-      tokenAccountPubkey === null ||
-      mintPubkey === null ||
+      tokenAddress === null ||
+      tokenAccountAddress === null ||
       publicKey === null
     ) {
       return
     }
 
-    const tokenMetadataPubkey = await getMetadataPDA(new PublicKey(mintPubkey))
-    console.log(tokenMetadataPubkey.toBase58())
+    const tokenMetadataPubkey = getMetadataPDA(new PublicKey(tokenAddress))
     const transaction = new Transaction().add(
       createSplitRoyaltyInstruction({
-        token: new PublicKey(tokenAccountPubkey),
-        metadata: new PublicKey(tokenMetadataPubkey),
+        token: new PublicKey(tokenAccountAddress),
+        metadata: tokenMetadataPubkey,
         owner: publicKey,
       }),
     )

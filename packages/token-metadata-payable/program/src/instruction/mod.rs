@@ -495,7 +495,7 @@ pub enum MetadataInstruction {
     /// A sort of limited authority for limited update capability that is required for things like
     /// Metaplex to work without needing full authority passing.
     #[account(0, name="metadata", desc="Metadata key (pda of ['metadata', program id, mint id])")]
-    #[account(1, signer, name="owner", desc="Owner on the token account")]
+    #[account(1, writable, signer, name="owner", desc="Owner on the token account")]
     #[account(2, writable, name="token", desc="Account containing tokens from the metadata's mint")]
     SplitRoyalty,
 }

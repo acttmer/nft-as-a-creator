@@ -1,8 +1,8 @@
 import { PublicKey } from '@solana/web3.js'
 import { PROGRAM_ID as MPL_TOKEN_METADATA_PROGRAM_ID } from 'token-metadata-payable'
 
-export const getMetadataPDA = async (mint: PublicKey): Promise<PublicKey> => {
-  const [publicKey] = await PublicKey.findProgramAddress(
+export const getMetadataPDA = (mint: PublicKey) => {
+  const [publicKey] = PublicKey.findProgramAddressSync(
     [
       Buffer.from('metadata'),
       MPL_TOKEN_METADATA_PROGRAM_ID.toBuffer(),
@@ -14,10 +14,8 @@ export const getMetadataPDA = async (mint: PublicKey): Promise<PublicKey> => {
   return publicKey
 }
 
-export const getMasterEditionPDA = async (
-  mint: PublicKey,
-): Promise<PublicKey> => {
-  const [publicKey] = await PublicKey.findProgramAddress(
+export const getMasterEditionPDA = (mint: PublicKey) => {
+  const [publicKey] = PublicKey.findProgramAddressSync(
     [
       Buffer.from('metadata'),
       MPL_TOKEN_METADATA_PROGRAM_ID.toBuffer(),
